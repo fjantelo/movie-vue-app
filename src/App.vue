@@ -1,3 +1,20 @@
+<script>
+export default {
+  data: function () {
+    return {
+      flashMessage: "",
+    };
+  },
+  watch: {
+    $route: function () {
+      localStorage.setItem("flashMessage", "Message!");
+      this.flashMessage = localStorage.getItem("flashMessage");
+      localStorage.removeItem("flashMessage");
+    },
+  },
+};
+</script>
+
 <template>
   <nav>
     <router-link to="/">Home</router-link>
@@ -6,6 +23,7 @@
     |
     <router-link to="/movies/new">New Movie</router-link>
   </nav>
+  <div v-if="flashMessage" v-on:click="flashMessage = ''" class="alert">{{ flashMessage }}</div>
   <router-view />
 </template>
 

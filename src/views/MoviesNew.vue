@@ -4,8 +4,9 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      newMovieParams: {},
+      newMovieParams: { plot: "" },
       errors: [],
+      status: "",
     };
   },
   created: function () {},
@@ -19,6 +20,7 @@ export default {
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
+          this.status = error.response.status;
         });
     },
   },
@@ -29,6 +31,7 @@ export default {
   <div class="movies-new">
     <form v-on:submit.prevent="createMovie()">
       <h1>New Movie</h1>
+      <img v-if="status" :src="`https://http.dog/${status}.jpg`" width="500" alt="" />
       <ul>
         <li v-for="error in errrors" v-bind:key="error">{{ error }}</li>
       </ul>
@@ -43,6 +46,7 @@ export default {
       <div>
         <label>Plot:</label>
         <input type="text" v-model="newMovieParams.plot" />
+        <small>{{ 140 - newMovieParams.plot.length }} chracters remaining</small>
       </div>
       <div>
         <label>Director:</label>

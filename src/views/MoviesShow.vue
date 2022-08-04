@@ -9,7 +9,7 @@ export default {
   },
   created: function () {
     axios.get("/movies/" + this.$route.params.id + ".json").then((response) => {
-      this.recipe = response.data;
+      this.movie = response.data;
     });
   },
   methods: {},
@@ -18,7 +18,7 @@ export default {
 
 <template>
   <div class="movies-show">
-    <div class="container">
+    <div>
       <h1>{{ movie.title }}</h1>
       <p>{{ movie.year }}</p>
       <p>{{ movie.plot }}</p>
