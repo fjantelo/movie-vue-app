@@ -22,6 +22,12 @@ export default {
     <router-link to="/movies">Movies</router-link>
     |
     <router-link to="/movies/new">New Movie</router-link>
+    |
+    <router-link to="/signup">Signup</router-link>
+    |
+    <router-link to="/login">Login</router-link>
+    |
+    <router-link to="/logout">Logout</router-link>
   </nav>
   <div v-if="flashMessage" v-on:click="flashMessage = ''" class="alert">{{ flashMessage }}</div>
   <router-view />
