@@ -53,7 +53,7 @@ const routes = [
     component: LoginView,
   },
   {
-    path: "/logou",
+    path: "/logout",
     name: "logout",
     component: LogoutView,
   },

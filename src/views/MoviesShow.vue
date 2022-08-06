@@ -23,6 +23,7 @@ export default {
       <p>{{ movie.year }}</p>
       <p>{{ movie.plot }}</p>
       <p>{{ movie.director }}</p>
+      <router-link :to="`/movies/${movie.id}/edit`">Edit Movie</router-link>
     </div>
   </div>
 </template>

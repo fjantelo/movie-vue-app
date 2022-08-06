@@ -16,7 +16,7 @@ export default {
   methods: {
     updateMovie: function () {
       axios
-        .patch("/movies/" + this.$route.params.id + ".json", this.editMovieParams)
+        .patch("/movies/" + this.editMovieParams.id + ".json", this.editMovieParams) //this.$route.params.id
         .then((response) => {
           console.log(response.data);
           this.$router.push("/movies");
@@ -26,7 +26,7 @@ export default {
         });
     },
     destroyMovie: function () {
-      axios.delete("/movies/" + this.$route.params.id).then((response) => {
+      axios.delete("/movies/" + this.editMovieParams.id).then((response) => {
         console.log("Success!", response.data);
         this.$router.push("/movies");
       });
@@ -37,7 +37,7 @@ export default {
 
 <template>
   <div class="movies-edit">
-    <form v-on:submit.prevent="updateMovie()">
+    <div>
       <h1>Update Movie</h1>
       <ul>
         <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
@@ -58,8 +58,8 @@ export default {
         Director:
         <input type="text" v-model="editMovieParams.director" />
       </p>
-      <input type="submit" value="Submit" />
-    </form>
+      <button v-on:click="updateMovie()">Save updates</button>
+    </div>
     <button v-on:click="destroyMovie()">Delete movie</button>
   </div>
 </template>
